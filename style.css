@@ -1,0 +1,20 @@
+body,
+.platform-linux,
+.platform-windows,
+:host-context(.platform-linux),
+:host-context(.platform-windows) {
+    --monospace-font-size: 12px !important;
+    --monospace-font-family: "Consolas", monospace !important;
+    --source-code-font-size: 12px !important;
+    --source-code-font-family: "Consolas", monospace !important;
+}
+
+.monospace {
+    font-size: var(--monospace-font-size);
+    font-family: var(--monospace-font-family);
+}
+
+.source-code {
+    font-size: var(--source-code-font-size);
+    font-family: var(--source-code-font-family);
+}
