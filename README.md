@@ -1,3 +1,7 @@
+## A simple extension to customize Chrome's Devtools fonts.
+
+This repository contains a simple unpackaged extension that allows you to customize Chrome's Devtools fonts displayed on `Elements`, `Console`, `Sources`, and other tabs by editing the `styles.css` file.
+
 ## How to:
 
 1. Clone this repository.
