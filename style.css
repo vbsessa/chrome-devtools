@@ -1,9 +1,7 @@
 body.platform-windows,
 body.platform-linux,
-body.platform-mac,
 :host-context(.platform-windows),
-:host-context(.platform-linux),
-:host-context(.platform-mac) {
+:host-context(.platform-linux) {
     --monospace-font-size: 12px !important;
     --monospace-font-family: "Consolas", monospace !important;
     --source-code-font-size: 12px !important;
