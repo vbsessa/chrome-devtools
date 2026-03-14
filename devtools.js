@@ -9,7 +9,7 @@ var MIN_SIZE = 8;
 var MAX_SIZE = 32;
 
 function sanitizeFontFamily(value) {
-    return value.replace(/[{};]/g, '');
+    return String(value || '').replace(/[{};\r\n]/g, '');
 }
 
 function clampSize(value) {
@@ -18,33 +18,26 @@ function clampSize(value) {
     return value;
 }
 
-chrome.storage.sync.get(DEFAULTS, function(items) {
+function applyConfiguredStyleSheet(items) {
     var monoFamily = sanitizeFontFamily(items.monoFamily);
     var sourceFamily = sanitizeFontFamily(items.sourceFamily);
     var monoSize = clampSize(parseInt(items.monoSize, 10));
     var sourceSize = clampSize(parseInt(items.sourceSize, 10));
+    var request = new XMLHttpRequest();
 
-    var css = [
-        'body.platform-windows,',
-        'body.platform-linux,',
-        'body.platform-mac,',
-        ':host-context(.platform-windows),',
-        ':host-context(.platform-linux),',
-        ':host-context(.platform-mac) {',
-        '    --monospace-font-size: ' + monoSize + 'px !important;',
-        '    --monospace-font-family: ' + monoFamily + ' !important;',
-        '    --source-code-font-size: ' + sourceSize + 'px !important;',
-        '    --source-code-font-family: ' + sourceFamily + ' !important;',
-        '}',
-        '.monospace {',
-        '    font-size: var(--monospace-font-size);',
-        '    font-family: var(--monospace-font-family);',
-        '}',
-        '.source-code {',
-        '    font-size: var(--source-code-font-size);',
-        '    font-family: var(--source-code-font-family);',
-        '}'
-    ].join('\n');
+    request.open('GET', 'style.css');
+    request.onload = function() {
+        var css = request.responseText
+            .replace(/__MONO_SIZE__/g, String(monoSize))
+            .replace(/__MONO_FAMILY__/g, monoFamily)
+            .replace(/__SOURCE_SIZE__/g, String(sourceSize))
+            .replace(/__SOURCE_FAMILY__/g, sourceFamily);
 
-    chrome.devtools.panels.applyStyleSheet(css);
+        chrome.devtools.panels.applyStyleSheet(css);
+    };
+    request.send();
+}
+
+chrome.storage.sync.get(DEFAULTS, function(items) {
+    applyConfiguredStyleSheet(items);
 });

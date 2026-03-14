@@ -4,18 +4,18 @@ body.platform-mac,
 :host-context(.platform-windows),
 :host-context(.platform-linux),
 :host-context(.platform-mac) {
-    --monospace-font-size: 12px !important;
-    --monospace-font-family: "Consolas", monospace !important;
-    --source-code-font-size: 12px !important;
-    --source-code-font-family: "Consolas", monospace !important;
+    --monospace-font-size: __MONO_SIZE__px !important;
+    --monospace-font-family: __MONO_FAMILY__ !important;
+    --source-code-font-size: __SOURCE_SIZE__px !important;
+    --source-code-font-family: __SOURCE_FAMILY__ !important;
 }
 
 .monospace {
-    font-size: var(--monospace-font-size);
-    font-family: var(--monospace-font-family);
+    font-size: var(--monospace-font-size) !important;
+    font-family: var(--monospace-font-family) !important;
 }
 
 .source-code {
-    font-size: var(--source-code-font-size);
-    font-family: var(--source-code-font-family);
+    font-size: var(--source-code-font-size) !important;
+    font-family: var(--source-code-font-family) !important;
 }
