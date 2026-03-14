@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>DevTools Font Customizer - Options</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      min-width: 400px;
+      padding: 16px;
+    }
+    h2 {
+      margin-top: 0;
+    }
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 6px;
+      margin-top: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 16px;
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+    #status {
+      margin-top: 8px;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <h2>DevTools Font Customizer</h2>
+
+  <label for="monoFamily">Monospace font family</label>
+  <input type="text" id="monoFamily" placeholder='e.g. "Consolas", monospace'>
+
+  <label for="monoSize">Monospace font size (px)</label>
+  <input type="number" id="monoSize" min="8" max="32" placeholder="12">
+
+  <label for="sourceFamily">Source code font family</label>
+  <input type="text" id="sourceFamily" placeholder='e.g. "Consolas", monospace'>
+
+  <label for="sourceSize">Source code font size (px)</label>
+  <input type="number" id="sourceSize" min="8" max="32" placeholder="12">
+
+  <br>
+  <button id="save">Save</button>
+  <button id="reset">Reset to defaults</button>
+  <div id="status"></div>
+
+  <script src="options.js"></script>
+</body>
+</html>
